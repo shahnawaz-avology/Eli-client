@@ -1,0 +1,145 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_NDCzWQ": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_N4rLxa": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get a Free Bottle of Iced Coffee Syrup with Free Shipping!",
+            "heading_size": "h0"
+          }
+        },
+        "text_Q4ekHn": {
+          "type": "text",
+          "settings": {
+            "text": "Enhance your iced coffee with our delicious, barista-quality syrup. Just fill out the form below!",
+            "text_style": "subtitle"
+          }
+        },
+        "buttons_iPwfXA": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Follow Us on Social Media",
+            "button_link_1": "shopify://pages/contact-us",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_N4rLxa",
+        "text_Q4ekHn",
+        "buttons_iPwfXA"
+      ],
+      "custom_css": [
+        "svg.placeholder-svg {opacity: 0 !important;}",
+        ".media {background-color: white;}",
+        "h2 {font-size: 48px; font-weight: bold; background: repeat padding-box border-box 0% 0% / auto auto scroll linear-gradient(180deg, #d76a52 2%, #dc915b 100%), rgba(63, 118, 82, 0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;}",
+        "a {background: repeat padding-box border-box 0% 0% / auto auto scroll linear-gradient(180deg, #d76a52 2%, #dc915b 100%), rgba(63, 118, 82, 0);}"
+      ],
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/Image_03_eaf5e4e3-9cb5-4dea-8cbd-d5a1c5b93cf0.png",
+        "image_overlay_opacity": 30,
+        "image_height": "adapt",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "multicolumn_7hHpky": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rm3xxD": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>Perfect Sweetness for Iced Coffee</strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_TfUXbd": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>Made with Premium Ingredients</strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nC3YKH": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>No Cost, No Catch – It’s 100% Free!</strong>",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rm3xxD",
+        "column_TfUXbd",
+        "column_nC3YKH"
+      ],
+      "settings": {
+        "custom_class": "",
+        "custom_class1": "",
+        "title": "<strong>Quick Product Highlights</strong>",
+        "content": "",
+        "additional_text": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "ever_drop_image_alt_text": "Description of the ever drop image"
+      }
+    },
+    "free_bottle_form_H9tRPK": {
+      "type": "free-bottle-form",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_NDCzWQ",
+    "multicolumn_7hHpky",
+    "free_bottle_form_H9tRPK"
+  ]
+}

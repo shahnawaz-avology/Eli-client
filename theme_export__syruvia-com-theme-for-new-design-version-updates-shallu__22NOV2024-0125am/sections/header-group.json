@@ -1,0 +1,144 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement_bar_PD9y7x": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_WNJcqp": {
+          "type": "announcement",
+          "settings": {
+            "text": "Enjoy Free Shipping! Use Code: 6060 at Checkout",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_WNJcqp"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "show_line_separator": true,
+        "show_social": false,
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "link_hqByRR": {
+          "type": "link",
+          "settings": {
+            "social_urls": "https://www.instagram.com/syruvia_official",
+            "social_labels": "Instagram"
+          }
+        },
+        "link_KnH7BM": {
+          "type": "link",
+          "settings": {
+            "social_urls": "https://www.tiktok.com/@syruviaofficial",
+            "social_labels": "TikTok"
+          }
+        },
+        "link_N43AKU": {
+          "type": "link",
+          "settings": {
+            "social_urls": "https://www.youtube.com/@Syruvia",
+            "social_labels": "Youtube"
+          }
+        },
+        "richtext_ztDyWx": {
+          "type": "richtext",
+          "settings": {
+            "cst-menu-content": "<p><a href=\"https://www.instagram.com/syruvia_official\" title=\"https://www.instagram.com/syruvia_official\">@SYRUVIAOFFICAL</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "link_hqByRR",
+        "link_KnH7BM",
+        "link_N43AKU",
+        "richtext_ztDyWx"
+      ],
+      "custom_css": [],
+      "settings": {
+        "logo_position": "middle-center",
+        "menu": "testmenu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "left",
+        "margin_bottom": 12,
+        "padding_top": 0,
+        "padding_bottom": 16,
+        "media_images": "shopify://shop_images/Syruvia_Jelly_Fusion_.00_00_05_46.Still015.png",
+        "image_text": "explore the fall season favorite $11.99",
+        "image_btn_text": "View Deal",
+        "image_btn_url": "shopify://collections/jelly-fruit-fusion",
+        "media_image_video_height": 247,
+        "media_image_video_width": 572
+      }
+    },
+    "breadcrumb_ad7xHG": {
+      "type": "breadcrumb",
+      "settings": {
+        "breadcrumbs_home_icon_bool": false,
+        "breadcrumb_delimeter": "angle_right",
+        "breadcrumb_bg_color": "#ffffff",
+        "breadcrumb_text_color": "#181817",
+        "breadcrumb_accent_color_bool": false,
+        "breadcrumb_accent_color": "#b85423",
+        "enable_product_page": true,
+        "enable_collection_page": false,
+        "enable_complete_site": false
+      }
+    },
+    "announcement_bar_naGAgL": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_BUEgTq": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Buy 5, Get 1 Free! No code required.",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_BUEgTq"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_PD9y7x",
+    "header",
+    "breadcrumb_ad7xHG",
+    "announcement_bar_naGAgL"
+  ]
+}

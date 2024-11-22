@@ -1,0 +1,668 @@
+<!--
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+-->
+
+<div class="{{ section.settings.custom_class }} cst-custom-home-loyal-customer cst-custom-tabs">
+  <!-- Tab controls -->
+  <input type="radio" id="loyaltab1" name="loyaltab-control" checked>
+  <input type="radio" id="loyaltab2" name="loyaltab-control">
+  <input type="radio" id="loyaltab3" name="loyaltab-control">
+  <input type="radio" id="loyaltab4" name="loyaltab-control">
+  <input type="radio" id="loyaltab5" name="loyaltab-control">
+
+  <div class="cst-custom-section-heading">
+    <span>
+      <img
+        class="ony-svg-img-leaf"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/Logo_Survyia-01_copy_1.png?v=1729078847"
+      >
+      <img
+        class="ony-svg-img-star"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/Vector_Smart_Object_3.png?v=1729078845"
+      >
+    </span>
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="cst-custom-content-wrap">
+    <ul class="cst-collection-titles">
+      <li title="loyalTab 1" class="active">
+        <label for="loyaltab1" role="button">
+          <span>{{ section.settings.blockname1 }}</span>
+        </label>
+      </li>
+      <li title="loyalTab 2" class="">
+        <label for="loyaltab2" role="button">
+          <span>{{ section.settings.blockname2 }}</span>
+        </label>
+      </li>
+      <li title="loyalTab 3" class="">
+        <label for="loyaltab3" role="button">
+          <span>{{ section.settings.blockname3 }}</span>
+        </label>
+      </li>
+      <li title="loyalTab 4" class="">
+        <label for="loyaltab4" role="button">
+          <span>{{ section.settings.blockname4 }}</span>
+        </label>
+      </li>
+      <li title="loyalTab 5" class="">
+        <label for="loyaltab5" role="button">
+          <span>{{ section.settings.blockname5 }}</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <section id="loyaltab-content1">
+      <div class="product-grid-section-2">
+        {% for block in section.blocks %}
+          {% if block.type == 'tab1' %}
+            {% assign product = all_products[block.settings.selected_product] %}
+            {% if product %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ block.settings.product_description }}</p>
+                </div>
+              </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if block.settings.media_type == 'image' %}
+              <div class="media-container product-card">
+                <img src="{{ block.settings.media_image | img_url: 'master' }}" alt="Review Image">
+              </div>
+            {% elsif block.settings.media_type == 'video' %}
+              <div class="media-container product-card">
+                <video class="myVideo" width="100%" height="100%" controls loop>
+                  <source src="{{block.settings.media_video.sources[1].url }}" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playButton">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/play.png?v=1728393076"
+                      class="img-fluid"
+                      alt="Play Button"
+                    >
+                  </span>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    <section id="loyaltab-content2">
+      <div class="product-grid-section-2">
+        {% for block in section.blocks %}
+          {% if block.type == 'tab2' %}
+            {% assign product = all_products[block.settings.selected_product] %}
+            {% if product %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ block.settings.product_description }}</p>
+                </div>
+              </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if block.settings.media_type == 'image' %}
+              <div class="media-container product-card">
+                <img src="{{ block.settings.media_image | img_url: 'master' }}" alt="Review Image">
+              </div>
+            {% elsif block.settings.media_type == 'video' %}
+              <div class="media-container product-card">
+                <video class="myVideo" width="100%" height="100%" controls loop>
+                  <source src="{{block.settings.media_video.sources[1].url }}" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playButton">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/play.png?v=1728393076"
+                      class="img-fluid"
+                      alt="Play Button"
+                    >
+                  </span>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    <section id="loyaltab-content3">
+      <div class="product-grid-section-2">
+        {% for block in section.blocks %}
+          {% if block.type == 'tab3' %}
+            {% assign product = all_products[block.settings.selected_product] %}
+            {% if product %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ block.settings.product_description }}</p>
+                </div>
+              </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if block.settings.media_type == 'image' %}
+              <div class="media-container product-card">
+                <img src="{{ block.settings.media_image | img_url: 'master' }}" alt="Review Image">
+              </div>
+            {% elsif block.settings.media_type == 'video' %}
+              <div class="media-container product-card">
+                <video class="myVideo" width="100%" height="100%" controls loop>
+                  <source src="{{block.settings.media_video.sources[1].url }}" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playButton">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/play.png?v=1728393076"
+                      class="img-fluid"
+                      alt="Play Button"
+                    >
+                  </span>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    <section id="loyaltab-content4">
+      <div class="product-grid-section-2">
+        {% for block in section.blocks %}
+          {% if block.type == 'tab4' %}
+            {% assign product = all_products[block.settings.selected_product] %}
+            {% if product %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ block.settings.product_description }}</p>
+                </div>
+              </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if block.settings.media_type == 'image' %}
+              <div class="media-container product-card">
+                <img src="{{ block.settings.media_image | img_url: 'master' }}" alt="Review Image">
+              </div>
+            {% elsif block.settings.media_type == 'video' %}
+              <div class="media-container product-card">
+                <video class="myVideo" width="100%" height="100%" controls loop>
+                  <source src="{{block.settings.media_video.sources[1].url }}" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playButton">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/play.png?v=1728393076"
+                      class="img-fluid"
+                      alt="Play Button"
+                    >
+                  </span>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+    <section id="loyaltab-content5">
+      <div class="product-grid-section-2">
+        {% for block in section.blocks %}
+          {% if block.type == 'tab5' %}
+            {% assign product = all_products[block.settings.selected_product] %}
+            {% if product %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ block.settings.product_description }}</p>
+                </div>
+              </div>
+            {% else %}
+
+            {% endif %}
+
+            {% if block.settings.media_type == 'image' %}
+              <div class="media-container product-card">
+                <img src="{{ block.settings.media_image | img_url: 'master' }}" alt="Review Image">
+              </div>
+            {% elsif block.settings.media_type == 'video' %}
+              <div class="media-container product-card">
+                <video class="myVideo" width="100%" height="100%" controls loop>
+                  <source src="{{block.settings.media_video.sources[1].url }}" type="video/mp4">
+                </video>
+                <div class="play-btn" id="playButton">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/play.png?v=1728393076"
+                      class="img-fluid"
+                      alt="Play Button"
+                    >
+                  </span>
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+  <div class="cst-btn">
+    <a href="/pages/customer-love" class="button">
+      View All Reviews
+      <span class="cst-custom-arrow">
+        <img src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/arroww.png?v=1728394015">
+      </span>
+    </a>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.cst-custom-home-loyal-customer .cst-collection-titles li').click(function(){
+      // Add active class to clicked tab and remove from others
+      $('.cst-custom-home-loyal-customer .cst-collection-titles li').removeClass('active');
+      $(this).addClass('active');
+
+      // Get the index of the clicked tab
+      var tabIndex = $(this).index() + 1;
+
+      // Hide all sections
+      $('.cst-custom-home-loyal-customer .content section').hide();
+
+      // Show the section corresponding to the clicked tab
+      $('.cst-custom-home-loyal-customer #loyaltab-content' + tabIndex).show();
+
+      // Trigger slick to resize and adjust width correctly on tab switch
+      $('.cst-custom-home-loyal-customer .product-grid-section-2').slick('setPosition');
+    });
+
+    // Initially hide all sections and show the first one
+    $('.cst-custom-home-loyal-customer .content section').hide();
+    $('#loyaltab-content1').show();
+
+    // Initialize slick carousel with arrows
+    // var $carousel = $('.cst-custom-home-loyal-customer .product-grid-section-2');
+    // var settings = {
+    //   dots: false,
+    //   arrows: true, // Enable arrows
+    //   slide: '.product-card',
+    //   slidesToShow: 3.9, // Shows 4 full slides and one half-visible
+    //   responsive: [
+    //     {
+    //       breakpoint: 1200,
+    //       settings: {
+    //         slidesToShow: 3.3,
+    //         centerPadding: '50px'
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 991,
+    //       settings: {
+    //         slidesToShow: 2.5,
+    //         centerPadding: '50px'
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 767,
+    //       settings: {
+    //         slidesToShow: 2.5,
+    //         centerPadding: '30px'
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 575,
+    //       settings: {
+    //         centerMode: true,
+    //         centerPadding: '40px',
+    //         slidesToShow: 1.2
+    //       }
+    //     }
+    //   ]
+    // };
+      $('.cst-custom-home-loyal-customer .product-grid-section-2').slick({
+    centerPadding: '200px',
+    slidesToShow: 4,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          centerPadding: '100px',
+          slidesToShow: 1
+
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: true,
+          centerMode: true,
+          centerPadding: '70px',
+          slidesToShow: 1
+        }
+      }
+    ]
+  });
+    function setSlideVisibility() {
+      var visibleSlides = $carousel.find('.product-card[aria-hidden="false"]');
+      $(visibleSlides).each(function() {
+        $(this).css('opacity', 1);
+      });
+    }
+
+    // Initialize slick and set slide visibility
+    $carousel.slick(settings);
+    $carousel.slick('slickGoTo', 1);
+    setSlideVisibility();
+
+    $carousel.on('afterChange', function() {
+      setSlideVisibility();
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Loyal Customer Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Loyal Customers"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom Class"
+    },
+    {
+      "type": "text",
+      "id": "blockname1",
+      "label": "Tab 1 Name",
+      "default": "Tab 1"
+    },
+    {
+      "type": "text",
+      "id": "blockname2",
+      "label": "Tab 2 Name",
+      "default": "Tab 2"
+    },
+    {
+      "type": "text",
+      "id": "blockname3",
+      "label": "Tab 3 Name",
+      "default": "Tab 3"
+    },
+    {
+      "type": "text",
+      "id": "blockname4",
+      "label": "Tab 4 Name",
+      "default": "Tab 4"
+    },
+    {
+      "type": "text",
+      "id": "blockname5",
+      "label": "Tab 5 Name",
+      "default": "Tab 5"
+    }
+  ],
+  "blocks": [
+
+    {
+      "type": "tab1",
+      "name": "Tab 1 Content",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product for Tab 1"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "product review"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Review Image"
+        },
+        {
+          "type": "video",
+          "id": "media_video",
+          "label": "Review Video URL"
+        }
+      ]
+    },
+    {
+      "type": "tab2",
+      "name": "Tab 2 Content",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product for Tab 2"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "product review"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Review Image"
+        },
+        {
+          "type": "video",
+          "id": "media_video",
+          "label": "Review Video URL"
+        }
+      ]
+    },
+    {
+      "type": "tab3",
+      "name": "Tab 3 Content",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product for Tab 3"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "product review"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Review Image"
+        },
+        {
+          "type": "video",
+          "id": "media_video",
+          "label": "Review Video URL"
+        }
+      ]
+    },
+    {
+      "type": "tab4",
+      "name": "Tab 4 Content",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product for Tab 4"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "product review"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Review Image"
+        },
+        {
+          "type": "video",
+          "id": "media_video",
+          "label": "Review Video URL"
+        }
+      ]
+    },
+    {
+      "type": "tab5",
+      "name": "Tab 5 Content",
+      "settings": [
+        {
+          "type": "product",
+          "id": "selected_product",
+          "label": "Select Product for Tab 5"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "product review"
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            { "value": "image", "label": "Image" },
+            { "value": "video", "label": "Video" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "media_image",
+          "label": "Review Image"
+        },
+        {
+          "type": "video",
+          "id": "media_video",
+          "label": "Review Video URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Loyal Customer Tabs",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

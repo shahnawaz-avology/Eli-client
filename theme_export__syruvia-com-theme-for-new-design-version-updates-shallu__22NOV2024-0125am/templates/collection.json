@@ -1,0 +1,107 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_wLVLgw": {
+      "type": "image-banner",
+      "blocks": {
+        "top_image_Yya3Gk": {
+          "type": "top-image",
+          "settings": {
+            "top_image": "shopify://shop_images/Blogfdzg-Page.png"
+          }
+        },
+        "heading_DVFAjV": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ collection.title }}",
+            "heading_size": "h1"
+          }
+        },
+        "text_yzXjGc": {
+          "type": "text",
+          "settings": {
+            "text": "Sip Into a Sweeter Life",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "top_image_Yya3Gk",
+        "heading_DVFAjV",
+        "text_yzXjGc"
+      ],
+      "settings": {
+        "custom_class": "",
+        "image": "shopify://shop_images/Blog-ddPage.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "custom_css": [
+        ".collection-hero__image-container > img {object-fit: contain;}",
+        ".collection-hero__image-container {border: none !important;}",
+        ".collection-hero__text-wrapper {display: none;}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+        "* {text-align: center;}",
+        "div {color: black;}",
+        "a {color: black;}",
+        "a:after {opacity: 0;}",
+        "button:after {opacity: 0; border: none;}",
+        ".spf-product__form-btn-addtocart {background: repeat padding-box border-box 0% 0% / auto auto scroll linear-gradient(180deg, #d76a52 2%, #dc915b 100%), rgba(63, 118, 82, 0) !important; border-radius: 8px; text-align: center; font-weight: 400; font-family: \"Josefin Sans\"; color: white;}",
+        ".ratio {max-height: 288px;}",
+        "img {width: 288px; height: 288px; object-fit: contain;}",
+        "button:hover {text-decoration: none; color: wheat;}"
+      ],
+      "settings": {
+        "products_per_page": 12,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "image_banner_wLVLgw",
+    "banner",
+    "product-grid"
+  ]
+}
