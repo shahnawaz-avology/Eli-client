@@ -1,0 +1,574 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<div id="recipe-list" class="recipe-body">
+  <section class="recipe-design1">
+    <div class="container">
+      <div class="filter-cstm-gt">
+        <div class="drop-down-filtre-cstm">
+          <i class="fa-solid fa-sliders"></i>
+          <h3>FILTER RECIPES:</h3>
+          <p>Search recipes by flavor or dietary choice!</p>
+        </div>
+
+        <div class="col-md-12">
+          <div
+            class="d-flex justify-content-start justify-content-lg-end mt-2 mt-lg-0 flex-wrap mobile-filter-gty"
+            id="filterRecipe"
+          >
+            <div class="filterby_flavour">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_0">
+                <i class="fas arrow-icon fa-chevron-up"></i> by Flavor
+              </h5>
+              <div id="filterRecipeChoiceGroup_0" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'flavor_' %}
+                      {% assign clean_tag = tag | remove: 'flavor_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'vanilla,caramel,chocolate mint,cinnamon dolce,gingerbread,peanut butter cup,brown sugar cinnamon,swiss chocolate mocha,apple crisp'
+                  | split: ','
+                -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="filterby_dietary">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_1">
+                <i class="fas fa-chevron-down arrow-icon"></i> Dietary
+              </h5>
+              <div id="filterRecipeChoiceGroup_1" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'dietary_' %}
+                      {% assign clean_tag = tag | remove: 'dietary_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'sugar-free,low-calorie,dairy-free,vegan,gluten-free,keto-friendly'
+                  | split: ','
+                -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="filterby_occasion">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_2">
+                <i class="fas fa-chevron-down arrow-icon"></i> Occasion
+              </h5>
+              <div id="filterRecipeChoiceGroup_2" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'occasion_' %}
+                      {% assign clean_tag = tag | remove: 'occasion_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'holidays,birthdays,everyday treats,family gatherings,office parties,coffee break'
+                  | split: ','
+                -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="filterby_season">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_3">
+                <i class="fas arrow-icon fa-chevron-down"></i> Season
+              </h5>
+              <div id="filterRecipeChoiceGroup_3" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'season_' %}
+                      {% assign clean_tag = tag | remove: 'season_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'fall,winter,spring,summer' | split: ',' -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="filterby_prep_time">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_4">
+                <i class="fas arrow-icon fa-chevron-up"></i> Prep Time
+              </h5>
+              <div id="filterRecipeChoiceGroup_4" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'Prep Time_' %}
+                      {% assign clean_tag = tag | remove: 'Prep Time_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'Under 10 minutes,10–20 minutes,20–30 minutes,Over 30 minutes'
+                  | split: ','
+                -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="filterby_difficulty">
+              <h5 class="filter-heading" data-target="filterRecipeChoiceGroup_5">
+                <i class="fas fa-chevron-down arrow-icon"></i> Difficulty
+              </h5>
+              <div id="filterRecipeChoiceGroup_5" class="collapse mt-2" style="display: block;">
+                {% assign flavor_tags = '' %}
+                {% for article in blogs['recipe-blogs'].articles %}
+                  {% for tag in article.tags %}
+                    {% if tag contains 'difficulty_' %}
+                      {% assign clean_tag = tag | remove: 'difficulty_' %}
+                      {% unless flavor_tags contains clean_tag %}
+                        {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+
+                {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+                {%- assign custom_order = 'beginner,intermediate,advanced' | split: ',' -%}
+
+                {% assign sorted_tags = '' %}
+                {% for custom_tag in custom_order %}
+                  {% if unique_flavor_tags contains custom_tag %}
+                    {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                  {% endif %}
+                {% endfor %}
+
+                {% assign sorted_tags_list = sorted_tags | split: ',' %}
+                {% for tag in sorted_tags_list %}
+                  {% unless tag == '' %}
+                    <div class="form-check me-2">
+                      <input
+                        class="form-check-input filter-recipe-checkbox"
+                        type="checkbox"
+                        value="{{ tag | escape }}"
+                        id="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}"
+                        data-tag="{{ tag | escape }}"
+                      >
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-filter-cstm-gt">
+        <div class="row" id="pageEntry"></div>
+        <div class="row justify-content-between align-items-center search-gt-cstm">
+          <div class="col-md-12">
+            <input class="form-control" list="datalistOptions" placeholder="Type to search recipes" id="searchKeyword">
+          </div>
+
+          <div class="col-lg-1 col-md-3 text-end" id="erase-filter" style="display: none;">
+            <button class="btn btn-link btn-lg border text-decoration-none" id="eraseAllBtn">Reset</button>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="" id="anotherSectiontag">
+            <ul class="top-slider-recipe cst-collection-titless">
+              {% assign flavor_tags = '' %}
+              {% for article in blogs['recipe-blogs'].articles %}
+                {% for tag in article.tags %}
+                  {% if tag contains 'recipe_' %}
+                    {% assign clean_tag = tag | remove: 'recipe_' %}
+                    {% unless flavor_tags contains clean_tag %}
+                      {% assign flavor_tags = flavor_tags | append: clean_tag | append: ',' %}
+                    {% endunless %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+
+              {% assign unique_flavor_tags = flavor_tags | split: ',' | uniq %}
+
+              {%- assign custom_order = 'coffee,cocktail,shaved Ice,topping,bursting balls' | split: ',' -%}
+
+              {% assign sorted_tags = '' %}
+              {% for custom_tag in custom_order %}
+                {% if unique_flavor_tags contains custom_tag %}
+                  {% assign sorted_tags = sorted_tags | append: custom_tag | append: ',' %}
+                {% endif %}
+              {% endfor %}
+
+              {% assign sorted_tags_list = sorted_tags | split: ',' %}
+              {% for tag in sorted_tags_list %}
+                {% unless tag == '' %}
+                  <div class="form-check me-2">
+                    <a href="/pages/recipe-new?tag=recipe_{{ tag }}">
+                      <label class="form-check-label" for="filterRecipeChoice_{{ forloop.index }}_{{ tag | escape }}">
+                        {{ tag }}
+                      </label>
+                    </a>
+                  </div>
+                {% endunless %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="row" id="design1">
+          <div id="blog-posts-container">
+            {% for article in blogs['recipe-blogs'].articles %}
+              <div
+                class="col-lg-4 col-md-6 mb-4 mb-lg-4 mb-md-3 blog-post"
+                data-tags="{% for tag in article.tags %}{{ tag | split: '_' | last }}{% if forloop.last == false %},{% endif %}{% endfor %}"
+              >
+                <div class="recipe-box">
+                  <a href="{{ article.url }}" class="text-dark text-decoration-none">
+                    <div class="recipe-img">
+                      <img src="{{ article.image | img_url:'master' }}" alt="Sugar-Free Caramel Pecan Mocha">
+                    </div>
+                    <div class="recipe-des p-3">
+                      <h4 class="mt-3">{{ article.title }}</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="sort-options">
+        <label for="sortRecipes">Sort by:</label>
+        <select id="sortRecipes" class="form-select form-select-sm">
+          <option value="most-popular">Most Popular</option>
+          <!-- <option value="newest">Newest</option> -->
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+          <option value="prep-time-shortest">Prep Time (Shortest to Longest)</option>
+          <option value="prep-time-longest">Prep Time (Longest to Shortest)</option>
+          <!--
+            <option value="date-old-to-new">Date, old to new</option>
+            <option value="date-new-to-old">Date, new to old</option>
+          -->
+        </select>
+      </div>
+    </div>
+    <div class="recipebg-mobimages-gty">
+      <img
+        class="bg-one-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/Vector_Smart_Object2_51de3fcd-9999-42c0-8b6c-494ec8274df7.png?v=1730985589"
+      >
+      <img
+        class="bg-two-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/unnamed_3ff5e284-a47e-4d13-b824-ae9a8150d7ae.png?v=1731306133"
+      >
+      <img
+        class="bg-three-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/unnamed_08271496-eed4-4ab4-820f-a4c5a1705421.png?v=1731306151"
+      >
+      <img
+        class="bg-four-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/unnamed_985a13e6-218b-450e-a29c-cd63538f60f6.png?v=1731305931"
+      >
+      <img
+        class="bg-five-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/Vector_Smart_Object5_436d373d-f7cf-4b13-beff-54ae95391604.png?v=1730705664"
+      >
+      <img
+        class="bg-six-mgty"
+        src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/Vector_Smart_Object6_2faeeacf-2169-4074-b6c1-9f08dbb2d588.png?v=1730725702"
+      >
+    </div>
+  </section>
+</div>
+<script>
+    $('.top-slider-recipe').slick({
+   slidesToShow: 5,
+  infinite: false,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          arrows: true,
+          slidesToShow: 4,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          arrows: false,
+          slidesToShow: 4,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      }
+    ]
+  });
+</script>
+<script>
+         $(document).ready(function() {
+        // Function to filter blogs based on selected tags
+        function filterBlogs(selectedTags) {
+          console.log("Selected Tags:", selectedTags); // Debugging line
+          $('.blog-post').each(function() {
+            var blogTags = $(this).data('tags').split(','); // Get the tags from the data-tags attribute
+            var isMatch = false;
+
+            // Check if any of the selected tags match the blog tags
+            for (var i = 0; i < selectedTags.length; i++) {
+              if (blogTags.includes(selectedTags[i])) {
+                isMatch = true;
+                break; // If a match is found, no need to check further
+              }
+            }
+
+            // Show or hide the blog post based on the match
+            if (isMatch || selectedTags.length === 0) {
+              $(this).show(); // Show the blog post
+              console.log("Showing:", $(this)); // Debugging line
+            } else {
+              $(this).hide(); // Hide the blog post
+              console.log("Hiding:", $(this)); // Debugging line
+            }
+          });
+        }
+
+        // Event listener for checkbox changes
+        $('.filter-recipe-checkbox').on('change', function() {
+          var selectedTags = [];
+
+          // Collect all checked tags
+          $('.filter-recipe-checkbox:checked').each(function() {
+            selectedTags.push($(this).data('tag'));
+          });
+
+          // Call the filter function with the selected tags
+          filterBlogs(selectedTags);
+        });
+
+        // On page load, check if there are any tags in the URL and filter accordingly
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedTagsFromUrl = urlParams.get('tags') ? urlParams.get('tags').split(',') : [];
+
+        // Mark checkboxes as checked based on the URL parameters
+        $('.filter-recipe-checkbox').each(function() {
+          const checkboxTag = $(this).data('tag');
+          if (selectedTagsFromUrl.includes(checkboxTag)) {
+            $(this).prop('checked', true);
+          }
+        });
+
+        // Initially filter blogs based on URL tags
+        filterBlogs(selectedTagsFromUrl);
+      });
+  $(document).ready(function () {
+    // Define a class for single-selection checkboxes
+    const singleSelectionClass = 'single-selection';
+
+    // Handle checkbox click events
+    $('.filter-recipe-checkbox').on('click', function () {
+      const isSingleSelection = $(this).hasClass(singleSelectionClass);
+
+      if (isSingleSelection) {
+        // Uncheck all other checkboxes in the single-selection group
+        $('.filter-recipe-checkbox.single-selection').not(this).prop('checked', false);
+      }
+
+      // Collect selected tags
+      let selectedTags = [];
+      $('.filter-recipe-checkbox:checked').each(function () {
+        selectedTags.push($(this).data('tag'));
+      });
+
+      // Show/Hide blog posts based on selected tags
+      $('.blog-post').each(function () {
+        const postTags = $(this).data('tags').split(',');
+
+        // Show if at least one tag matches, otherwise hide
+        const isVisible = selectedTags.some(tag => postTags.includes(tag));
+        if (selectedTags.length === 0 || isVisible) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  #recipe-list .recipe-design1 .container{
+    width:100%;
+  }
+</style>
+{% schema %}
+{
+  "name": "Recipe Blog section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Recipe Blog section",
+    }
+  ]
+}
+{% endschema %}

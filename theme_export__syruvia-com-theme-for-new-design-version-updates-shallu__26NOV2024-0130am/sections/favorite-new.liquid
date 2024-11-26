@@ -1,0 +1,232 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<div class="cst-custom-tabs">
+  <!-- Tab controls -->
+  <input type="radio" id="tab1" name="tab-control" checked>
+  <input type="radio" id="tab2" name="tab-control">
+  <input type="radio" id="tab3" name="tab-control">
+  <div class="cst-custom-section-heading work-on-mobile">
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+  <div class="cst-custom-content-wrap">
+    <div class="cst-custom-section-heading work-on-desktop">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="cstcustom-collection-title-wrap">
+      <ul class="cst-collection-titles">
+        {% assign collections = section.settings.collection_list %}
+        {% if collections != blank %}
+          {% for collection in collections %}
+            <li title="Tab {{ forloop.index }}" class="{% if forloop.index == 1 %}active{% endif %}">
+              <label for="tab{{ forloop.index }}" role="button">
+                <span>{{ collection.title }}</span>
+              </label>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Content section for each tab -->
+  <div class="content">
+    {% assign tab_counter = 1 %}
+    {% for collection in collections %}
+      <section id="tab-content{{ tab_counter }}">
+        <div class="product-grid-section">
+          {% if collection.products.size > 0 %}
+            {% for product in collection.products limit: 8 %}
+              <div class="product-card {% assign colorIndex = forloop.index0 | modulo: 4 %}{% if colorIndex == 0 %}colorone{% elsif colorIndex == 1 %}colortwo{% elsif colorIndex == 2 %}colorthree{% elsif colorIndex == 3 %}colorfour{% endif %}">
+                <div class="cst-custom-product-featured-image">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                  </a>
+                </div>
+                <div class="cst-custom-product-content">
+                  <div
+                    class="areviews_product_item areviews_stars{{ product.id }}"
+                    data-product-id="{{ product.id }}"
+                  ></div>
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ product.price | money }}</p>
+                  <a class="button" href="{{ product.url }}" class="add-to-cart-btn">Add to Cart</a>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+
+          {% endif %}
+        </div>
+      </section>
+      {% assign tab_counter = tab_counter | plus: 1 %}
+    {% endfor %}
+  </div>
+  <div class="cst-btn">
+    <a href="{{ section.settings.button_link }}" class="button">
+      {{ section.settings.button_text }}
+      <span class="cst-custom-arrow"
+        ><img src="https://cdn.shopify.com/s/files/1/0861/1106/0252/files/arroww.png?v=1728394015"
+      ></span>
+    </a>
+  </div>
+</div>
+
+<script>
+      $(document).ready(function(){
+        // Tab click functionality
+        $('.cst-collection-titles li').click(function(){
+          // Add active class to clicked tab and remove from others
+          $('.cst-collection-titles li').removeClass('active');
+          $(this).addClass('active');
+
+          // Get the index of the clicked tab
+          var tabIndex = $(this).index() + 1;
+
+          // Hide all sections
+          $('.content section').hide();
+
+          // Show the section corresponding to the clicked tab
+          $('#tab-content' + tabIndex).show();
+
+          // Trigger slick to resize and adjust width correctly on tab switch
+          $('.product-grid-section').slick('setPosition');
+        });
+
+        // Initialize slick carousel with arrows
+        // var $carousel = $('.product-grid-section');
+        // var settings = {
+        //   dots: false,
+        //   arrows: true, // Enable arrows
+        //   slide: '.product-card',
+        //   centerPadding: '120px',
+        //   centerMode: true,
+        //   slidesToShow: 4, // Shows 4 full slides and one half-visible
+        //   responsive: [
+        //     {
+        //       breakpoint: 1200,
+        //       settings: {
+        //         slidesToShow: 3,
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 991,
+        //       settings: {
+        //         slidesToShow: 2,
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 767,
+        //       settings: {
+        //       slidesToShow: 2
+        //       }
+        //     },
+        //     {
+        //       breakpoint: 575,
+        //       settings: {
+        //       slidesToShow: 1
+        //       }
+        //     }
+        //   ]
+        // };
+
+
+        $('.product-grid-section').slick({
+  centerMode: false,
+      slidesToShow: 4,
+      responsive: [
+        {
+          breakpoint: 1300,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            centerPadding: '100px',
+            slidesToShow: 1
+
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            centerPadding: '70px',
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+
+        // function setSlideVisibility() {
+        //   var visibleSlides = $carousel.find('.product-card[aria-hidden="false"]');
+        //   $(visibleSlides).each(function() {
+        //     $(this).css('opacity', 1);
+        //   });
+        // }
+
+        // // Initialize slick and set slide visibility
+        // $carousel.slick(settings);
+        // $carousel.slick('slickGoTo', 1);
+        // setSlideVisibility();
+
+        // $carousel.on('afterChange', function() {
+        //   setSlideVisibility();
+        // });
+
+        // Initially show the first tab content
+        $('.content section').hide();
+        $('#tab-content1').show();
+      });
+</script>
+
+{% schema %}
+{
+  "name": "Favorite Section",
+  "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Collections",
+        "limit": 8
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+  ],
+  "presets": [
+    {
+      "name": "Favorite Section"
+    }
+  ]
+}
+{% endschema %}
