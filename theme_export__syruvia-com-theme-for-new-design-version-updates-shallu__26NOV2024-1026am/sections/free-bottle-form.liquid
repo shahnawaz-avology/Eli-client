@@ -1,0 +1,137 @@
+{% comment %}
+Claim Your Free Bottle Form
+{% endcomment %}
+
+<div class="free-bottle-form">
+  <h2>Claim Your Free Bottle</h2>
+  <p>Fill out your details below and we’ll send you a free bottle, no strings attached!</p>
+
+  <form id="free-bottle-claim-form" method="post" action="/path-to-handle-form-submission">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="shipping-address">Shipping Address</label>
+    <textarea name="shipping-address" id="shipping-address" required></textarea>
+
+    <p class="privacy-note">Your info is secure and will only be used for this offer.</p>
+
+    <button type="submit">Get My Free Bottle</button>
+  </form>
+</div>
+
+{% comment %}
+Pop-up Section (initially hidden)
+{% endcomment %}
+<div id="success-popup" style="display:none;">
+  <h3>Thank You!</h3>
+  <p>Your free bottle is on the way!</p>
+  <div class="product-details">
+    <img src="https://syruvia.com/cdn/shop/files/iced_coffee_syrup.png?v=1727438159&width=20" alt="Iced Coffee Syrup">
+    <p>Use code <strong>FREEBOTTLE</strong> at checkout to claim your free bottle!</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+</div>
+
+{% comment %}
+JavaScript for form submission and pop-up display
+{% endcomment %}
+<script>
+  document.getElementById('free-bottle-claim-form').onsubmit = function(event) {
+    event.preventDefault();
+
+    // Display the success pop-up
+    document.getElementById('success-popup').style.display = 'block';
+
+    // Optionally clear the form fields
+    this.reset();
+  };
+
+  function addToCart() {
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      items: [{
+        id: 4914117387906, // Using the actual variant ID
+        quantity: 1
+      }]
+    })
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Failed to add product to cart');
+    return response.json();
+  })
+  .then(() => {
+    // Redirect to the cart page with the discount code applied
+    window.location.href = '/cart?discount=FreeBottle';
+  })
+  .catch(error => {
+    console.error('Error adding product to cart:', error);
+    alert('There was an issue adding the product to the cart. Please try again.');
+  });
+}
+
+</script>
+
+<style>
+  .free-bottle-form {
+    /* Add your styles here */
+  }
+
+  #success-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+  }
+</style>
+
+{% comment %}
+Schema Markup for the Product
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Iced Coffee Syrup",
+  "description": "Enhance your iced coffee with our delicious, barista-quality syrup.",
+  "image": "https://syruvia.com/cdn/shop/files/iced_coffee_syrup.png?v=1727438159&width=20",
+  "url": "https://syruvia.com/products/iced-syrup",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://syruvia.com/products/iced-syrup",
+    "priceCurrency": "USD",
+    "price": "0.00",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "eligibleRegion": {
+      "@type": "Place",
+      "name": "United States"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "10"
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Free Bottle form",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Free Bottle form"
+    }
+  ]
+}
+{% endschema %}
