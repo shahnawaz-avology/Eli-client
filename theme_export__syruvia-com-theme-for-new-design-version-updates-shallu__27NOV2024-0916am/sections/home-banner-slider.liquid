@@ -1,0 +1,281 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<style>
+.new-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.new-items-contents {
+background-color: #ffdcbd;
+padding: 20px !important;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.new-items-img img {
+width: 100%;
+height: 700px;
+object-fit: cover;
+}
+.new-items-contents h2 {
+color: #341c02;
+font-family: Redrains !important;
+text-align: center;
+font-size: 55px !important;
+font-weight: 600 !important;
+line-height: normal;
+margin: 0;
+padding-top: 12px;
+position: relative;
+}
+.new-items-contents h2 span {
+display: block;
+font-family: Redrains !important;
+}
+.new-items-contents .top-image img {
+width: 80px;
+}
+.new-items-contents p {
+font-size: 26px;
+line-height: 37px;
+color: #341c02;
+font-family: Inter24pt !important;
+text-align: center;
+font-weight: 500;
+margin: 0;
+    position: relative;
+padding: 0;
+}
+.new-items-contents .top-image {
+    position: relative;
+}
+.new-items-contents  .button {
+height: 71px;
+background-color: #ffffff;
+font-size: 33px;
+line-height: 69px;
+color: #341c02;
+font-family: "Inter24pt"!important;
+border: 2px solid transparent;
+margin-top:50px;
+}
+.new-items-contents  .button:hover {
+border: 2px solid #341c02;
+}
+.home-new-slider .slick-dots li {
+display: block;
+}
+.home-new-slider .slick-dots {
+bottom: 23px;
+display: flex;
+width: 50%;
+left: 0;
+justify-content: center;
+}
+.home-new-slider .slick-dots li button:before {
+border: 1px solid #000000;
+padding: 0;
+width: 10px;
+height: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: transparent;
+color: unset;
+border-radius: 50%;
+}
+.home-new-slider .slick-dots li {
+width: 11px;
+}
+.home-new-slider .slick-dots li.slick-active button:before {
+opacity: 1;
+color: unset;
+background: #341c02;
+}
+
+@media (max-width: 991.98px) {  
+.new-items-contents  .button {
+height: auto;
+background-color: #ffffff;
+font-size: 23px;
+}
+.new-items-contents h2 {
+font-size: 40px !important;
+}
+}
+
+@media (max-width: 767px) {  
+.new-items {
+display: flex;
+flex-direction: column-reverse;
+}
+.new-items-img {
+padding-top: 104px;
+}
+.new-items-img img {
+max-height: 538px;
+}
+.new-items-contents {
+padding: 0 10px 78px !important;
+position: relative;
+}
+.home-new-slider .slick-dots {
+width: 100%;
+}
+.new-items-contents:before {
+content: "";
+position: absolute;
+top: -72px;
+left: -155px;
+background: url(https://cdn.shopify.com/s/files/1/0861/1106/0252/files/New_Project_2_1_7ecb8590-17a6-4442-bcea-664bddc8dd11.png?v=1729065219);
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+width: calc(100% + 360px);
+height: 234px;
+z-index: 0;
+}
+.new-items-contents h2 {
+max-width: 556px;
+}
+.home-new-slider .slick-dots {
+  bottom: 22px;
+}
+.home-new-slider {
+background: #ffdcbd;
+}
+.new-items-contents p {
+font-size: 19px;
+}
+}
+
+@media (max-width: 575px) {  
+.new-items-contents:before {
+top: -84px;
+width: calc(100% + 207px);
+left: -88px;
+}
+.new-items-img img {
+max-height: 431px;
+}
+.new-items-contents  .button {
+font-size: 16px;
+line-height: 23px;
+margin-top: 24px;
+}
+.new-items-contents h2 {
+font-size: 29px !important;
+}
+}
+
+@media (max-width: 420px) {  
+.new-items-img img {
+max-height: 349px;
+}
+.new-items-contents:before {
+    top: -95px;
+    width: calc(100% + 166px);
+    left: -63px;
+}
+}
+
+</style>
+
+<div class="home-new-slider">
+  {% for block in section.blocks %}
+    <div>
+      <div class="new-items">
+        <div class="new-items-contents">
+          {% if block.settings.top_image %}
+            <div class="top-image">
+              <img src="{{ block.settings.top_image | img_url: 'large' }}" alt="Top Image">
+            </div>
+          {% endif %}
+          <h2>{{ block.settings.slider_title }}</h2>
+          <p>{{ block.settings.slider_description }}</p>
+          {% if block.settings.slider_button_link %}
+            <a href="{{ block.settings.slider_button_link }}" class="button-link button">
+              {{ block.settings.slider_button_text }}
+            </a>
+          {% endif %}
+        </div>
+        <div class="new-items-img">
+          <img src="{{ block.settings.slider_image | img_url: '' }}" alt="Slider Image">
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+    <script>
+           $('.home-new-slider').slick({
+       slidesToShow: 1,
+       infinite: true,
+       arrows: false,
+       dots: true,
+       speed: 500,
+       fade: true,
+       cssEase: 'linear',
+             autoplay: true,
+             autoplaySpeed: 1000
+    });
+        </script>   
+
+{% schema %}
+{
+  "name": "Home Banner Slider",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slider_item",
+      "name": "Slider Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "top_image",
+          "label": "Top Image"
+        },
+        {
+          "type": "html",
+          "id": "slider_title",
+          "label": "Slider Title",
+          "default": "Warm Up with Seasonal Flavors"
+        },
+        {
+          "type": "textarea",
+          "id": "slider_description",
+          "label": "Slider Description",
+          "default": "Perfect for a warm, inviting drink experience"
+        },
+        {
+          "type": "text",
+          "id": "slider_button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "slider_button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "slider_image",
+          "label": "Slider Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Banner Slider",
+      "blocks": [ ]
+    }
+  ]
+}
+{% endschema %}
+
